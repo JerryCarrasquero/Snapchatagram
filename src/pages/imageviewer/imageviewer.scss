@@ -1,0 +1,29 @@
+page-imageviewer {
+  @media (min-width: 0px) {
+        .images {
+            column-count: 2;
+        }
+    }
+
+    @media (min-width: 420px) {
+        .images {
+            column-count: 3;
+        }
+    }
+
+    @media (min-width: 720px) {
+        .images {
+            column-count: 4;
+        }
+    }
+
+    .one-image {
+        margin: 2px;
+    }
+    #wrapper {
+      display: flex;
+      justify-content: center;
+    }
+    #element1 {display:inline-block;margin-right:10px;}
+    #element2 {display:inline-block;}
+}

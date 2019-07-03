@@ -1,0 +1,33 @@
+<!--
+  Generated template for the RegisterdataPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding>
+  <form [formGroup]="loginForm" (ngSubmit)="register()" class="mainmenu" >
+  <ion-grid >
+    <ion-row>
+      <ion-col offset-1 col-10>
+        <ion-item id="rounded" class="inputg" no-lines>
+          <ion-input type="text" formControlName="Username" placeholder="Nombre"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset-1 col-10>
+        <ion-item id="rounded" class="inputg" no-lines>
+          <ion-input type="password" formControlName="Password" placeholder="Password"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <hr>
+    <ion-row>
+      <ion-col offset-1 col-10>
+        <button ion-button full  type="submit" [disabled]="!loginForm.valid">Register</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </form>
+</ion-content>

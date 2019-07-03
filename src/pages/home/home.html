@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  <ion-list>
+  <ion-grid>
+    <div class="container" ion-item *ngFor="let item of items; let i = index"  text-wrap no-lines>
+       <ion-row>
+          <ion-card no-lines>
+            <img [src]=getSantizeUrl(item.photo) (click)="goTo(item.postid)" />
+              <ion-card-content>
+                <ion-card-title>
+                  <h4>{{item.email}}</h4>
+                </ion-card-title>
+                <hr>
+                <p>
+                  <b>Description:</b>
+                  {{item.description}}
+                </p>
+                <hr>
+                <ion-col col-2 offset-10>
+                </ion-col>
+              </ion-card-content>
+          </ion-card>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-list>
+</ion-content>

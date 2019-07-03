@@ -1,0 +1,112 @@
+<!--
+  Generated template for the ImageviewerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+                Image Viwer
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <div class="one-image" ion-item *ngFor="let item of items; let i = index"  text-wrap no-lines>
+      <img (click)="showimage(item.photo)" [src]=getSantizeUrl(item.photo)/>
+     <ion-card no-lines>
+         <ion-card-content>
+           <ion-card-title>
+             <ion-grid>
+               <ion-row>
+                 <ion-col col-10>
+                   <h4>{{item.email}}</h4>
+                 </ion-col>
+               </ion-row>
+               <ion-row>
+                 <div *ngIf="item.userid==userid">
+                   <ion-col>
+                     <button ion-button icon-end (click)='delete()'>
+                       Delete Image<ion-icon name="close"></ion-icon>
+                     </button>
+                   </ion-col>
+                 </div>
+               </ion-row>
+             </ion-grid>
+           </ion-card-title>
+           <hr>
+           <p>
+             <b>Description:</b><br>
+             {{item.description}}
+           </p>
+           <hr>
+           <ion-grid>
+             <ion-row>
+           <div *ngIf="item.liked==false" >
+             <ion-col col-3>
+                <a class="btnno" id="element1"href="#"(click)=likedpost(item.postid,item.liked) ><ion-icon name="heart-outline"></ion-icon></a>
+              </ion-col>
+              <ion-col>
+                <p id="element2">Likes count:{{item.count}}</p>
+              </ion-col>
+           </div>
+           <div *ngIf="item.liked==true">
+             <ion-col col-3>
+               <a class="btn" href="#" id="element1" (click)=likedpost(item.postid,item.liked) ><ion-icon name="heart"></ion-icon></a>
+             </ion-col>
+             <ion-col col-3>
+               <p id="element2">Likes count:{{item.count}}</p>
+             </ion-col>
+           </div>
+            </ion-row>
+          </ion-grid>
+
+           <hr>
+           <ion-col col-2 offset-10>
+
+           </ion-col>
+         </ion-card-content>
+     </ion-card>
+</div>
+<ion-list>
+  <ion-card>
+  <form [formGroup]="commentForm" (ngSubmit)="postcomment()" >
+    <ion-item>
+      <ion-input  placeholder="write a comment" formControlName="comment"></ion-input>
+      <button item-right ion-button [disabled]="!commentForm.valid" type ="submit">Post</button>
+    </ion-item>
+  </form>
+  </ion-card>
+    <ion-item-sliding >
+      <ion-item *ngIf="istherec==true" >
+        <ion-card *ngFor="let comment of comments">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-10>
+                {{comment.email}}
+              </ion-col>
+              <div *ngIf="comment.userid==userid  ||userpostid==userid">
+                <ion-col col-2>
+                  <button  item-right clear (click)='deletecomment(comment.commentid)'>
+                    <ion-icon name="close"></ion-icon>
+                  </button>
+                </ion-col>
+              </div>
+            </ion-row>
+          </ion-grid>
+          <ion-card-content>
+            {{comment.comment}}
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

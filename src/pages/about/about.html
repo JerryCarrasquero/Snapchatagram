@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title >
+      <ion-grid>
+        <ion-row>
+          <ion-col col-8>
+            {{email}}
+          </ion-col>
+          <ion-col  offset-2>
+            <button item-right clear (click)='logoff()'>
+              <ion-icon name="power"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-avatar item-start>
+      <!--place holder image -->
+      <img [src]="getSantizeUrl(imgplaceholder)">
+    </ion-avatar>
+    <button ion-button full [navPush]="pushPage">Edit Profile</button>
+  </ion-item>
+  <ion-card-content>
+    <h2>{{name}}</h2>
+    <p>{{biography}}</p>
+      <button ion-button full id="rounded" [navPush]="secondpush" outline>Upload image</button>
+  </ion-card-content>
+  <hr>
+  <div class="one-image" *ngFor="let item of items;">
+    <img [src]=getSantizeUrl(item.photo) (click)="goTo(item.postid)" *ngIf="image==true">
+  </div>
+</ion-content>
